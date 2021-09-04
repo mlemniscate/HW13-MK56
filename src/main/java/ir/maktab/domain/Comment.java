@@ -26,7 +26,7 @@ public class Comment extends BaseEntity<Long> {
     @Column(name = LAST_UPDATED_TIME)
     private Date lastUpdatedTime;
 
-    @Column(name = USER_ID, nullable = false, unique = true)
+    @Column(name = USER_ID, nullable = false)
     private Long userId;
 
     public Comment() {
