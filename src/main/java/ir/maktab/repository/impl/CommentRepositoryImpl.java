@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class CommentRepositoryImpl extends BaseEntityRepositoryImpl<Comment, Long> implements CommentRepository {
 
-    protected CommentRepositoryImpl(EntityManager entityManager) {
+    public CommentRepositoryImpl(EntityManager entityManager) {
         super(entityManager);
     }
 

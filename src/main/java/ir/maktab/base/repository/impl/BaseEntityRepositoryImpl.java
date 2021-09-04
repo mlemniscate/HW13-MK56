@@ -15,7 +15,7 @@ public abstract class BaseEntityRepositoryImpl<E extends BaseEntity<ID>, ID exte
 
     private final EntityManager entityManager;
 
-    protected BaseEntityRepositoryImpl(EntityManager entityManager) {
+    public BaseEntityRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

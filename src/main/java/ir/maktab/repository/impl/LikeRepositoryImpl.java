@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class LikeRepositoryImpl extends BaseEntityRepositoryImpl<Like, Long> implements LikeRepository {
 
-    protected LikeRepositoryImpl(EntityManager entityManager) {
+    public LikeRepositoryImpl(EntityManager entityManager) {
         super(entityManager);
     }
 

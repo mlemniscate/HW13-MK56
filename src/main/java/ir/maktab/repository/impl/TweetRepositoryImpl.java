@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 public class TweetRepositoryImpl extends BaseEntityRepositoryImpl<Tweet, Long> implements TweetRepository {
 
-    protected TweetRepositoryImpl(EntityManager entityManager) {
+    public TweetRepositoryImpl(EntityManager entityManager) {
         super(entityManager);
     }
 
