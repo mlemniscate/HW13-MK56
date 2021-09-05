@@ -5,6 +5,7 @@ import ir.maktab.domain.User;
 import ir.maktab.util.ApplicationContext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class FirstMenu extends Menu implements RunnableMenu<Void> {
@@ -13,24 +14,17 @@ public class FirstMenu extends Menu implements RunnableMenu<Void> {
         super(items);
     }
 
-    // This method do all the first menu tasks
     @Override
     public Void runMenu(){
         while (true) {
-            switch (getItemFromUser()) {
+            switch (getItemFromConsole()) {
                 case 1:
-                    User optional = ApplicationContext.getUserService().login();
-                    if (!Objects.isNull(optional)) {
-                        System.out.println("Login successful");
-//                        new UserMenu(
-//                                new ArrayList<String>() {{
-//                                    add("Add Activity");
-//                                    add("Change Activity Status");
-//                                    add("Sort Activities");
-//                                    add("Log Out");
-//                                }},
-//                                loginUser
-//                        ).runMenu();
+                    User loginUser = ApplicationContext.getUserService().login();
+                    if (!Objects.isNull(loginUser)) {
+                        new UserMenu(
+                                new ArrayList<>(Arrays.asList("My Tweets", "Show All Tweets", "Edit Info", "Delete Account")),
+                                loginUser
+                        ).runMenu();
                     } else {
                         System.out.println("Your password or username is wrong!");
                     }
@@ -39,11 +33,7 @@ public class FirstMenu extends Menu implements RunnableMenu<Void> {
                     ApplicationContext.getUserService().signUp();
                     break;
                 case 3:
-                    if (new CheckMenu(new ArrayList<String>() {{
-                        add("Yes");
-                        add("No");
-                    }},
-                            "Are you sure you want to exit?").runMenu()) return null;
+                    if (new CheckMenu("Are you sure you want to exit?").runMenu()) return null;
                     else break;
             }
         }

@@ -5,6 +5,10 @@ import ir.maktab.domain.User;
 import ir.maktab.repository.UserRepository;
 import ir.maktab.service.UserService;
 import ir.maktab.service.front.input.InputString;
+import ir.maktab.service.front.menu.Menu;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepository> implements UserService {
     public UserServiceImpl(UserRepository repository) {
@@ -44,18 +48,27 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepos
 
     public void editFirstName(User user) {
         user.setFirstName(enterFirstName());
+        save(user);
     }
 
     public void editLastName(User user) {
         user.setLastName(enterLastName());
+        save(user);
     }
 
     public void editUsername(User user) {
         user.setUsername(enterUsername());
+        save(user);
     }
 
     public void editPassword(User user) {
         user.setPassword(enterPassword());
+        save(user);
+    }
+
+    public void editEmail(User user) {
+        user.setEmail(enterEmail());
+        save(user);
     }
 
     private String[] getAllUserNames() {
@@ -78,5 +91,32 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepos
                 enterPassword(),
                 enterEmail()
         ));
+    }
+
+    @Override
+    public void editAccount(User user) {
+        int itemFromConsole = new Menu(new ArrayList<>(Arrays.asList(
+                "Edit FirstName",
+                "Edit LastName",
+                "Edit Password",
+                "Edit Username",
+                "Edit Email"))).getItemFromConsole();
+        switch (itemFromConsole) {
+            case 1:
+                editFirstName(user);
+                break;
+            case 2:
+                editLastName(user);
+                break;
+            case 3:
+                editPassword(user);
+                break;
+            case 4:
+                editUsername(user);
+                break;
+            case 5:
+                editEmail(user);
+                break;
+        }
     }
 }

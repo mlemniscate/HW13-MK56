@@ -20,7 +20,7 @@ public class Menu {
         System.out.println("------------------------------------------");
     }
 
-    public int getItemFromUser() {
+    public int getItemFromConsole() {
         showMenu();
         return new InputInt("Enter an item number: ", items.size(), 1, null)
                 .getIntInput();
