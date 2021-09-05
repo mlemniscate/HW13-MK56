@@ -10,8 +10,8 @@ import java.util.Objects;
 
 public class FirstMenu extends Menu implements RunnableMenu<Void> {
 
-    public FirstMenu(ArrayList<String> items) {
-        super(items);
+    public FirstMenu() {
+        super(new ArrayList<>(Arrays.asList("Log In", "Sign Up", "Exit")));
     }
 
     @Override
@@ -21,10 +21,7 @@ public class FirstMenu extends Menu implements RunnableMenu<Void> {
                 case 1:
                     User loginUser = ApplicationContext.getUserService().login();
                     if (!Objects.isNull(loginUser)) {
-                        new UserMenu(
-                                new ArrayList<>(Arrays.asList("My Tweets", "Show All Tweets", "Edit Info", "Delete Account")),
-                                loginUser
-                        ).runMenu();
+                        new UserMenu(loginUser).runMenu();
                     } else {
                         System.out.println("Your password or username is wrong!");
                     }

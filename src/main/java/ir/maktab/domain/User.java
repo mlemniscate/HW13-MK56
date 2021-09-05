@@ -31,7 +31,7 @@ public class User extends BaseEntity<Long> {
     @Column(name = EMAIL)
     private String email;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Tweet> tweets;
 
