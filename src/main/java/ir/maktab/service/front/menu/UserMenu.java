@@ -1,11 +1,13 @@
 package ir.maktab.service.front.menu;
 
 
+import ir.maktab.domain.Tweet;
 import ir.maktab.domain.User;
 import ir.maktab.util.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class UserMenu extends Menu implements RunnableMenu<Void> {
     private final User user;
@@ -24,6 +26,8 @@ public class UserMenu extends Menu implements RunnableMenu<Void> {
                     new UserTweetMenu(user).runMenu();
                     break;
                 case 2:
+                    List<Tweet> all = ApplicationContext.getTweetService().findAll();
+                    new AllTweetsMenu(user, all).runMenu();
                     break;
                 case 3:
                     ApplicationContext.getUserService().editAccount(user);
