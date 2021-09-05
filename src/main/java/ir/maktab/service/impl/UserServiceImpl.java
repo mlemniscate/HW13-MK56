@@ -5,10 +5,6 @@ import ir.maktab.domain.User;
 import ir.maktab.repository.UserRepository;
 import ir.maktab.service.UserService;
 import ir.maktab.service.front.input.InputString;
-import ir.maktab.util.ApplicationContext;
-
-import java.sql.SQLException;
-import java.util.List;
 
 public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepository> implements UserService {
     public UserServiceImpl(UserRepository repository) {
@@ -41,9 +37,9 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepos
     }
 
     private String enterEmail() {
-        return new InputString("Enter your password: ",
-                "Your password must be minimum 8 characters, at least one letter and one number.",
-                "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", null).getStringInput();
+        return new InputString("Enter your email: ",
+                "Your email address is wrong!",
+                "^[A-Za-z0-9+_.-]+@(.+)$", null).getStringInput();
     }
 
     public void editFirstName(User user) {
@@ -63,20 +59,24 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepos
     }
 
     private String[] getAllUserNames() {
-        List<User> users = findAll();
+        return repository.findAllUsernames().toArray(new String[0]);
     }
 
     @Override
     public User login() {
-//        String username = new InputString("Enter your username: ").getStringInput();
-//        String password = new InputString("Enter your password: ").getStringInput();
-//        return repository.findByUsernamePassword(username, password);
+        String username = new InputString("Enter your username: ").getStringInput();
+        String password = new InputString("Enter your password: ").getStringInput();
+        return repository.findByUsernamePassword(username, password);
     }
 
     @Override
     public void signUp() {
-        return save(new User(
-
+        save(new User(
+                enterFirstName(),
+                enterLastName(),
+                enterUsername(),
+                enterPassword(),
+                enterEmail()
         ));
     }
 }

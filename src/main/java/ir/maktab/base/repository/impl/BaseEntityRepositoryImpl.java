@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public abstract class BaseEntityRepositoryImpl<E extends BaseEntity<ID>, ID extends Serializable> implements BaseEntityRepository<E, ID> {
 
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public BaseEntityRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

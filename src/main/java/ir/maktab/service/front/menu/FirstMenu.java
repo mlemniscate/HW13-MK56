@@ -1,9 +1,11 @@
 package ir.maktab.service.front.menu;
 
 
+import ir.maktab.domain.User;
 import ir.maktab.util.ApplicationContext;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class FirstMenu extends Menu implements RunnableMenu<Void> {
 
@@ -17,8 +19,9 @@ public class FirstMenu extends Menu implements RunnableMenu<Void> {
         while (true) {
             switch (getItemFromUser()) {
                 case 1:
-//                    User loginUser = ApplicationContext.getUserService().login();
-//                    if (!Objects.isNull(loginUser)) {
+                    User optional = ApplicationContext.getUserService().login();
+                    if (!Objects.isNull(optional)) {
+                        System.out.println("Login successful");
 //                        new UserMenu(
 //                                new ArrayList<String>() {{
 //                                    add("Add Activity");
@@ -28,9 +31,9 @@ public class FirstMenu extends Menu implements RunnableMenu<Void> {
 //                                }},
 //                                loginUser
 //                        ).runMenu();
-//                    } else {
-//                        System.out.println("Your password or username is wrong!");
-//                    }
+                    } else {
+                        System.out.println("Your password or username is wrong!");
+                    }
                     break;
                 case 2:
                     ApplicationContext.getUserService().signUp();
