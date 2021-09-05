@@ -39,10 +39,10 @@ public abstract class BaseEntityRepositoryImpl<E extends BaseEntity<ID>, ID exte
     @Override
     public List<E> findAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(getEntityClass());
-        Root<E> root = criteriaQuery.from(getEntityClass());
-        criteriaQuery.select(root);
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        CriteriaQuery<E> query = criteriaBuilder.createQuery(getEntityClass());
+        Root<E> root = query.from(getEntityClass());
+        query.select(root);
+        return entityManager.createQuery(query).getResultList();
     }
 
     @Override

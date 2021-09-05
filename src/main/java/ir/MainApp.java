@@ -1,11 +1,12 @@
 package ir;
 
-import ir.maktab.util.HibernateUtil;
+import ir.maktab.service.front.menu.FirstMenu;
 
-import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainApp {
     public static void main(String[] args) {
-        EntityManager entityManager = HibernateUtil.getEntityManagerFactory().createEntityManager();
+        new FirstMenu(new ArrayList<>(Arrays.asList("Sign Up", "Login", "Exit"))).runMenu();
     }
 }

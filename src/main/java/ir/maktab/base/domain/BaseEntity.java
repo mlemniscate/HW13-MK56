@@ -21,6 +21,10 @@ public class BaseEntity<ID extends Serializable> implements Serializable {
     public BaseEntity() {
     }
 
+    public BaseEntity(ID id) {
+        this.id = id;
+    }
+
     public ID getId() {
         return id;
     }
