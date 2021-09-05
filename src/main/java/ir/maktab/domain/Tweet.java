@@ -24,15 +24,20 @@ public class Tweet extends BaseEntity<Long> {
     @Column(name = LAST_UPDATED_TIME)
     private Date lastUpdatedTime;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "tweet_id")
     private List<Like> likes;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "tweet_id")
     private List<Comment> comments;
 
     public Tweet() {
+    }
+
+    public Tweet(String text, Date createdTime) {
+        this.text = text;
+        this.createdTime = createdTime;
     }
 
     public String getText() {
@@ -57,5 +62,14 @@ public class Tweet extends BaseEntity<Long> {
 
     public void setLastUpdatedTime(Date lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "text='" + text + '\'' +
+                ", createdTime=" + createdTime +
+                ", lastUpdatedTime=" + lastUpdatedTime +
+                '}' + "\n";
     }
 }
