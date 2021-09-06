@@ -25,7 +25,7 @@ public class Tweet extends BaseEntity<Long> {
     @Column(name = LAST_UPDATED_TIME)
     private Date lastUpdatedTime;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tweet")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "tweet")
     private List<Like> likes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

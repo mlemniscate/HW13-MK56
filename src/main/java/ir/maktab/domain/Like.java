@@ -19,7 +19,7 @@ public class Like extends BaseEntity<Long> {
     @Column(name = USER_ID, nullable = false)
     private Long userId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "tweet_id")
     private Tweet tweet;
 
