@@ -3,6 +3,7 @@ package ir.maktab.domain;
 import ir.maktab.base.domain.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,7 +34,7 @@ public class User extends BaseEntity<Long> {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private List<Tweet> tweets;
+    private List<Tweet> tweets = new ArrayList<>();
 
     public User() {
     }

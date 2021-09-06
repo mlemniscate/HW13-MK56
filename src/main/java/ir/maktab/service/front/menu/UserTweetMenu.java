@@ -10,6 +10,7 @@ import ir.maktab.util.ApplicationContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class UserTweetMenu extends Menu implements RunnableMenu<Void> {
@@ -73,13 +74,8 @@ public class UserTweetMenu extends Menu implements RunnableMenu<Void> {
     }
 
     private void showTweets() {
-        if (user.getTweets().size() != 0)
-            IntStream
-                    .range(0, user.getTweets().size())
-                    .forEach(item ->  System.out.println(
-                                    "#"+ (item + 1) + ": " +
-                                            user.getTweets().get(item).toString()
-                            )
-                    );
+        if (!Objects.isNull(user.getTweets()))
+            IntStream.range(0, user.getTweets().size())
+                    .forEach(item ->  System.out.println("#"+ (item + 1) + ": " + user.getTweets().get(item).toString()));
     }
 }

@@ -16,10 +16,19 @@ public class Like extends BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private LikeStatus likeStatus = LikeStatus.DISLIKE;
 
-    @Column(name = USER_ID, nullable = false, unique = true)
+    @Column(name = USER_ID, nullable = false)
     private Long userId;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tweet_id")
+    private Tweet tweet;
+
     public Like() {
+    }
+
+    public Like(LikeStatus likeStatus, Long userId) {
+        this.likeStatus = likeStatus;
+        this.userId = userId;
     }
 
     public LikeStatus getLikeStatus() {
@@ -36,5 +45,21 @@ public class Like extends BaseEntity<Long> {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Tweet getTweet() {
+        return tweet;
+    }
+
+    public void setTweet(Tweet tweet) {
+        this.tweet = tweet;
+    }
+
+    @Override
+    public String toString() {
+        return "Like{" +
+                "likeStatus=" + likeStatus +
+                ", userId=" + userId +
+                '}';
     }
 }

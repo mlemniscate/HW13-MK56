@@ -3,6 +3,7 @@ package ir.maktab.domain;
 import ir.maktab.base.domain.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,13 +25,12 @@ public class Tweet extends BaseEntity<Long> {
     @Column(name = LAST_UPDATED_TIME)
     private Date lastUpdatedTime;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tweet_id")
-    private List<Like> likes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tweet")
+    private List<Like> likes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "tweet_id")
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     public Tweet() {
     }
@@ -62,6 +62,27 @@ public class Tweet extends BaseEntity<Long> {
 
     public void setLastUpdatedTime(Date lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
+    }
+
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void addLike(Like like) {
+        likes.add(like);
+        like.setTweet(this);
     }
 
     @Override

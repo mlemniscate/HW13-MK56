@@ -2,10 +2,13 @@ package ir.maktab.service.front.menu;
 
 import ir.maktab.domain.Tweet;
 import ir.maktab.domain.User;
+import ir.maktab.service.front.input.InputInt;
+import ir.maktab.util.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class AllTweetsMenu extends Menu implements RunnableMenu<Void>{
@@ -24,6 +27,8 @@ public class AllTweetsMenu extends Menu implements RunnableMenu<Void>{
         while (true) {
             switch (getItemFromConsole()) {
                 case 1:
+                    Tweet tweet = allTweets.get(enterTweetNumber() - 1);
+                    ApplicationContext.getLikeService().likeATweet(user, tweet);
                     break;
                 case 2:
                     break;
@@ -35,9 +40,16 @@ public class AllTweetsMenu extends Menu implements RunnableMenu<Void>{
         }
     }
 
+    private int enterTweetNumber() {
+        return new InputInt("Enter your tweet number: ", allTweets.size(), 1, null)
+                .getIntInput();
+    }
+
     private void showAllTweets() {
-        IntStream.range(0, allTweets.size()).forEach(item -> {
-            System.out.println("#"+ (item + 1) + ": " + allTweets.get(item).toString());
-        });
+        if(!Objects.isNull(allTweets)) {
+            IntStream.range(0, allTweets.size()).forEach(item -> {
+                System.out.println("#" + (item + 1) + ": " + allTweets.get(item).toString());
+            });
+        }
     }
 }
