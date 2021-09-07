@@ -94,4 +94,14 @@ public class User extends BaseEntity<Long> {
     public void setTweets(List<Tweet> tweets) {
         this.tweets = tweets;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
