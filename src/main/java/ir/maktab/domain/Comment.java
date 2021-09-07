@@ -32,6 +32,12 @@ public class Comment extends BaseEntity<Long> {
     public Comment() {
     }
 
+    public Comment(String text, Date createdTime, Long userId) {
+        this.text = text;
+        this.createdTime = createdTime;
+        this.userId = userId;
+    }
+
     public String getText() {
         return text;
     }
@@ -54,5 +60,23 @@ public class Comment extends BaseEntity<Long> {
 
     public void setLastUpdatedTime(Date lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "text='" + text + '\'' +
+                ", createdTime=" + createdTime +
+                ", lastUpdatedTime=" + lastUpdatedTime +
+                ", userId=" + userId +
+                '}';
     }
 }

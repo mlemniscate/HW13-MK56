@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class MainApp {
     public static void main(String[] args) {
         HibernateUtil.getEntityManagerFactory().createEntityManager();
-        insertInfo();
+//        insertInfo();
         new FirstMenu().runMenu();
     }
 

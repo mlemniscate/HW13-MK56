@@ -32,6 +32,12 @@ public class Tweet extends BaseEntity<Long> {
     @JoinColumn(name = "tweet_id")
     private List<Comment> comments = new ArrayList<>();
 
+    @Transient
+    private int likeNumber;
+
+    @Transient
+    private int commentNumber;
+
     public Tweet() {
     }
 
@@ -83,6 +89,16 @@ public class Tweet extends BaseEntity<Long> {
     public void addLike(Like like) {
         likes.add(like);
         like.setTweet(this);
+    }
+
+    public int getLikeNumber() {
+        likeNumber = likes.size();
+        return likeNumber;
+    }
+
+    public int getCommentNumber() {
+        commentNumber = comments.size();
+        return commentNumber;
     }
 
     @Override

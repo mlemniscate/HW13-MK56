@@ -25,12 +25,15 @@ public class AllTweetsMenu extends Menu implements RunnableMenu<Void>{
     @Override
     public Void runMenu() {
         while (true) {
+            Tweet tweet;
             switch (getItemFromConsole()) {
                 case 1:
-                    Tweet tweet = allTweets.get(enterTweetNumber() - 1);
+                    tweet = allTweets.get(enterTweetNumber() - 1);
                     ApplicationContext.getLikeService().likeATweet(user, tweet);
                     break;
                 case 2:
+                    tweet = allTweets.get(enterTweetNumber() - 1);
+                    new TweetCommentMenu(user, tweet).runMenu();
                     break;
                 case 3:
                     break;
