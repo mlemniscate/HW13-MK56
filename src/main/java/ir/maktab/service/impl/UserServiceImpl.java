@@ -119,4 +119,9 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User, Long, UserRepos
                 break;
         }
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return repository.findByUsername(username);
+    }
 }

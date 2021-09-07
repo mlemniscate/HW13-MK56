@@ -36,11 +36,23 @@ public class AllTweetsMenu extends Menu implements RunnableMenu<Void>{
                     new TweetCommentMenu(user, tweet).runMenu();
                     break;
                 case 3:
+                    tweet = allTweets.get(enterTweetNumber() - 1);
+                    showFullTweet(tweet);
                     break;
                 case 4:
                     return null;
             }
         }
+    }
+
+    private void showFullTweet(Tweet tweet) {
+        System.out.println("----------------------------------------------------" +
+                "\nTweet text: " + tweet.getText() +
+                "\nTweet likes: " + tweet.getLikeNumber() +
+                "\nTweet comments: " + tweet.getCommentNumber() +
+                "\n"
+        );
+        tweet.getComments().forEach(System.out::println);
     }
 
     private int enterTweetNumber() {

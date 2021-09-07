@@ -10,4 +10,6 @@ public interface UserRepository extends BaseEntityRepository<User, Long> {
     List<String> findAllUsernames();
 
     User findByUsernamePassword(String username, String password);
+
+    User findByUsername(String username);
 }

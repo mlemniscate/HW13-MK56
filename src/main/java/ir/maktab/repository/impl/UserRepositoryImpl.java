@@ -47,4 +47,18 @@ public class UserRepositoryImpl extends BaseEntityRepositoryImpl<User, Long> imp
             return null;
         }
     }
+
+    @Override
+    public User findByUsername(String username) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.select(root).where(criteriaBuilder.equal(root.get("username"), username));
+        try {
+            return entityManager.createQuery(query).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 }

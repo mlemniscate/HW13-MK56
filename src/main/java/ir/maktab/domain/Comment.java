@@ -1,6 +1,7 @@
 package ir.maktab.domain;
 
 import ir.maktab.base.domain.BaseEntity;
+import ir.maktab.util.ApplicationContext;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -76,7 +77,7 @@ public class Comment extends BaseEntity<Long> {
                 "text='" + text + '\'' +
                 ", createdTime=" + createdTime +
                 ", lastUpdatedTime=" + lastUpdatedTime +
-                ", userId=" + userId +
+                ", username=" + ApplicationContext.getUserService().findById(userId).getUsername() +
                 '}';
     }
 }
